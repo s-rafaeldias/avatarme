@@ -31,6 +31,21 @@ func drawCorner(dc *gg.Context) {
 
 }
 
+func drawSide(dc *gg.Context) {
+	// Draw top
+	drawPane(dc, 200, 0, 1, 0, 0)
+	// Draw right
+	drawPane(dc, 400, 200, 1, 0, 0)
+	// Draw bottom
+	drawPane(dc, 200, 400, 1, 0, 0)
+	// Draw left
+	drawPane(dc, 0, 200, 1, 0, 0)
+}
+
+func drawCenter(dc *gg.Context) {
+	drawPane(dc, 200, 200, 0, 1, 0)
+}
+
 func main() {
 	// Generate MD5
 	text := getMD5([]byte("teste"))
@@ -43,7 +58,9 @@ func main() {
 	dc := gg.NewContext(Size, Size)
 
 	drawCorner(dc)
+	drawSide(dc)
+	drawCenter(dc)
 
-	dc.SaveJPG("teste.jpg", 100)
+	dc.SavePNG("teste.png")
 
 }
