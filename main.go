@@ -11,55 +11,42 @@ func getMD5(data []byte) [md5.Size]byte {
 	return md5.Sum(data)
 }
 
-func drawPane(dc *gg.Context, x, y, r, g, b float64) {
+func drawPane(dc *gg.Context, x, y float64, color string) {
 	dc.Push()
-	dc.SetRGB(r, g, b)
-	dc.DrawRectangle(x, y, 200, 200)
+
+	dc.LineTo(0, 0)
+	dc.LineTo(0, 600)
+	dc.LineTo(600, 0)
+
+	dc.SetLineWidth(10)
+	dc.SetHexColor("#000000")
+	dc.StrokePreserve()
+	dc.SetHexColor("#000000")
 	dc.Fill()
+
 	dc.Pop()
-}
-
-func drawCorner(dc *gg.Context) {
-	// Draw top left
-	drawPane(dc, 0, 0, 0, 0, 1)
-	// Draw top right
-	drawPane(dc, 400, 0, 0, 0, 1)
-	// Draw bottom left
-	drawPane(dc, 0, 400, 0, 0, 1)
-	// Draw bottom right
-	drawPane(dc, 400, 400, 0, 0, 1)
-
-}
-
-func drawSide(dc *gg.Context) {
-	// Draw top
-	drawPane(dc, 200, 0, 1, 0, 0)
-	// Draw right
-	drawPane(dc, 400, 200, 1, 0, 0)
-	// Draw bottom
-	drawPane(dc, 200, 400, 1, 0, 0)
-	// Draw left
-	drawPane(dc, 0, 200, 1, 0, 0)
-}
-
-func drawCenter(dc *gg.Context) {
-	drawPane(dc, 200, 200, 0, 1, 0)
 }
 
 func main() {
 	// Generate MD5
-	text := getMD5([]byte("teste"))
-	fmt.Printf("%x\n", text)
+	text := getMD5([]byte("raf197795@gmail.c"))
+	fmt.Printf("%b\n", text)
+
+	centerPatch := getCenterPatch(text[:])
+	fmt.Println("Center patch:", centerPatch)
 
 	// Constants
 	const Size = 600
 
 	// identicon is 600x600
 	dc := gg.NewContext(Size, Size)
+	dc.SetHexColor("#FFFFFF")
+	dc.Clear()
 
-	drawCorner(dc)
-	drawSide(dc)
-	drawCenter(dc)
+	drawPane(dc, 1., 2., "#FFCC00")
+	//drawCorner(dc)
+	//drawSide(dc)
+	//drawCenter(dc)
 
 	dc.SavePNG("teste.png")
 
