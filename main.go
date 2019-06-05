@@ -28,8 +28,11 @@ func drawPane(dc *gg.Context, x, y float64, color string) {
 }
 
 func main() {
+	// Constants
+	const Size = 600
+
 	// Generate MD5
-	text := getMD5([]byte("aqueleteste"))
+	text := getMD5([]byte("ggizipizi"))
 	fmt.Printf("%b\n", text)
 
 	// Get base color
@@ -37,9 +40,6 @@ func main() {
 	cornerPatch, sidePatch, centerPatch := getPatch(text[:])
 	fmt.Printf("Corner patch: %d\nSide patch: %d\nCenter patch: %d\n",
 		cornerPatch, sidePatch, centerPatch)
-
-	// Constants
-	const Size = 600
 
 	// identicon is 600x600
 	dc := gg.NewContext(Size, Size)
