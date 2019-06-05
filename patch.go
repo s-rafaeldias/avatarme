@@ -18,3 +18,10 @@ func getPatch(text []byte) (byte, byte, byte) {
 
 	return cornerPatch, sidePatch, centerPatch
 }
+
+func getColorInvert(text []byte) byte {
+	var mask byte = 0x02
+
+	invert := (text[4] & mask) >> 1
+	return invert
+}
