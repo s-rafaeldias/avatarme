@@ -11,3 +11,8 @@ func getCenterPatch(text []byte) byte {
 
 	return result
 }
+
+func getHexColor(text []byte) string {
+	color := fmt.Sprintf("#%X", text[0:3])
+	return color
+}

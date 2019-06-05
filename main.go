@@ -18,10 +18,10 @@ func drawPane(dc *gg.Context, x, y float64, color string) {
 	dc.LineTo(0, 600)
 	dc.LineTo(600, 0)
 
-	dc.SetLineWidth(10)
-	dc.SetHexColor("#000000")
+	dc.SetLineWidth(1)
+	dc.SetHexColor(color)
 	dc.StrokePreserve()
-	dc.SetHexColor("#000000")
+	dc.SetHexColor(color)
 	dc.Fill()
 
 	dc.Pop()
@@ -29,11 +29,11 @@ func drawPane(dc *gg.Context, x, y float64, color string) {
 
 func main() {
 	// Generate MD5
-	text := getMD5([]byte("raf197795@gmail.c"))
+	text := getMD5([]byte("testemaroto"))
 	fmt.Printf("%b\n", text)
 
-	centerPatch := getCenterPatch(text[:])
-	fmt.Println("Center patch:", centerPatch)
+	// Get color
+	color := getHexColor(text[:])
 
 	// Constants
 	const Size = 600
@@ -43,7 +43,7 @@ func main() {
 	dc.SetHexColor("#FFFFFF")
 	dc.Clear()
 
-	drawPane(dc, 1., 2., "#FFCC00")
+	drawPane(dc, 1., 2., color)
 	//drawCorner(dc)
 	//drawSide(dc)
 	//drawCenter(dc)
