@@ -29,11 +29,14 @@ func drawPane(dc *gg.Context, x, y float64, color string) {
 
 func main() {
 	// Generate MD5
-	text := getMD5([]byte("testemaroto"))
+	text := getMD5([]byte("aqueleteste"))
 	fmt.Printf("%b\n", text)
 
-	// Get color
+	// Get base color
 	color := getHexColor(text[:])
+	cornerPatch, sidePatch, centerPatch := getPatch(text[:])
+	fmt.Printf("Corner patch: %d\nSide patch: %d\nCenter patch: %d\n",
+		cornerPatch, sidePatch, centerPatch)
 
 	// Constants
 	const Size = 600

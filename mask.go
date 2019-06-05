@@ -16,3 +16,13 @@ func getHexColor(text []byte) string {
 	color := fmt.Sprintf("#%X", text[0:3])
 	return color
 }
+
+func getPatch(text []byte) (byte, byte, byte) {
+	var cornerMask byte = 0xF0
+	var sideMask byte = 0x0F
+
+	cornerPatch := (cornerMask & text[3]) >> 4
+	sidePatch := sideMask & text[3]
+
+	return cornerPatch, sidePatch, byte(10)
+}
