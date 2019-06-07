@@ -15,9 +15,9 @@ jobs:
           name: "Create a temp directory for artifacts"
           command: |
             mkdir -p /tmp/artifacts
-      - run: go test ./... -cover -coverprofile=c.out
+      - run: go test ./... -cover -coverprofile=/tmp/artifacts/c.txt -covermode=atomic 
       - codecov/upload:
-          file: /tmp/artifacts/c.out
+          file: /tmp/artifacts/c.txt
 
 workflows:
   version: 2
