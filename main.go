@@ -1,15 +1,10 @@
 package main
 
 import (
-	"crypto/md5"
 	"fmt"
 
 	"github.com/fogleman/gg"
 )
-
-func getMD5(data []byte) [md5.Size]byte {
-	return md5.Sum(data)
-}
 
 func drawPane(dc *gg.Context, x, y float64, color string) {
 	dc.Push()
@@ -50,9 +45,6 @@ func main() {
 	dc.Clear()
 
 	drawPane(dc, 1., 2., baseColor)
-	//drawCorner(dc)
-	//drawSide(dc)
-	//drawCenter(dc)
 
 	dc.SavePNG("teste.png")
 

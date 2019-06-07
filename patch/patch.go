@@ -1,13 +1,13 @@
-package main
+package patch
 
 import "fmt"
 
-func getHexColor(text []byte) string {
+func GetHexColor(text []byte) string {
 	color := fmt.Sprintf("#%X", text[0:3])
 	return color
 }
 
-func getPatch(text []byte) (byte, byte, byte) {
+func GetPatch(text []byte) (byte, byte, byte) {
 	var cornerMask byte = 0xF0
 	var sideMask byte = 0x0F
 	var centerMask byte = 0xC0
