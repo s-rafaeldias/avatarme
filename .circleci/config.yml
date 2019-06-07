@@ -1,0 +1,17 @@
+# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - checkout
+      - run: go install && go test ./...
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+
+
