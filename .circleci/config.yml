@@ -3,7 +3,8 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/golang:1.12
+      - image: circleci/golang:1.12.5-stretch
+    working_directory: /go/src/github.com/s-rafaeldias/avatarme
     steps:
       - checkout
       - run: go get ./...
