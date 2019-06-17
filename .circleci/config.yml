@@ -10,12 +10,12 @@ jobs:
     working_directory: /go/src/github.com/s-rafaeldias/avatarme
     steps:
       - checkout
-      - run: go get ./...
+      - run: make go_get
       - run:
           name: "Create a temp directory for artifacts"
           command: |
             mkdir -p /tmp/artifacts
-      - run: go test ./... -cover -coverprofile=/tmp/artifacts/c.txt -covermode=atomic 
+      - run: make test_ci
       - codecov/upload:
           file: /tmp/artifacts/c.txt
 
